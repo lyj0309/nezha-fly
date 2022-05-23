@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo '${{ secrets.CONFIG }}' > ./config.yaml
+      - run: echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
