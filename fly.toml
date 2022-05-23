@@ -1,20 +1,20 @@
-# fly.toml file generated for testnz on 2022-05-22T20:58:35+08:00
+# fly.toml file generated for nz on 2022-02-07T02:08:50+08:00
 
-app = "testnz"
+app = "fakev-status"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
-[mounts]
-source="nztest_data"
-destination="/dashboard/data"
 
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
 
+[mounts]
+  destination = "/dashboard/data"
+  source = "nz_data"
 
 [[services]]
   http_checks = []
