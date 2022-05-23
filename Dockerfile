@@ -7,4 +7,5 @@ FROM ghcr.io/naiba/nezha-dashboard:latest
 
 COPY config.yaml .
 COPY run.sh .
+RUN chmod 777 *
 ENTRYPOINT ["./run.sh"]
