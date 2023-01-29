@@ -14,8 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
-
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
+      
+      - run: |
+          n=`date "+%Y-%m-%d"`
+          l=`wget -qO- -t1 -T2 "https://api.github.com/repos/naiba/nezha/releases/latest" | jq -r ".published_at"`
+          if [[ $l =~ $n ]]
+          then
+               echo "new_release=yes" >> $GITHUB_ENV
+          else
+               echo "new_release=no" >> $GITHUB_ENV
+          fi
+          
+          
+      - name: deploy
+        if: ${{ env.new_release == 'yes'  }}
+        run: |
+          echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
+          flyctl deploy --remote-only
 
