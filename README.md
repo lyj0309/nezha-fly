@@ -8,8 +8,8 @@
 `CONFIG`: 哪吒面板配置文件
 `FLY_API_TOKEN`: fly的api token
 
-## 注意
-第一次部署需要把`action`中的`if: ${{ env.new_release == 'yes'  }}`注释掉，部署成功之后再注回来
+## 第一次部署
+1. 需要把`action`中的`if: ${{ env.new_release == 'yes'  }}`注释掉，部署成功之后再注回来
 ```yml
       - name: deploy
         if: ${{ env.new_release == 'yes'  }}
@@ -17,4 +17,5 @@
           echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
           flyctl deploy --remote-only
 ```
+2. 需要先运行`fly launch`创建一个app，名字填`fly.toml`里面的, 我的是`fakev-status`可以改，但需要保持一样
 ## 展示网址 （<https://status.fakev.cn>）
