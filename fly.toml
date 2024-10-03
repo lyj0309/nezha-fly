@@ -15,6 +15,8 @@ processes = []
 [mounts]
   destination = "/dashboard/data"
   source = "nz_data"
+[http_service.http_options]
+  h2_backend = true
 
 [[services]]
   http_checks = []
@@ -57,7 +59,8 @@ processes = []
 
   [[services.ports]]
     port = 5555
-
+  [services.ports.http_options]
+    h2_backend = true
   [[services.tcp_checks]]
     grace_period = "1s"
     interval = "15s"
