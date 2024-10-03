@@ -57,6 +57,9 @@ processes = []
     soft_limit = 20
     type = "connections"
   [[services.ports]]
+    handlers = [ "http"]
+    port = 5554
+  [[services.ports]]
     handlers = ["tls"]
     port = 5555
     tls_options = { "alpn" = ["h2"] }
