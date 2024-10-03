@@ -46,16 +46,10 @@ processes = []
     timeout = "2s"
 
 [[services]]
-  http_checks = []
   internal_port = 5555
   processes = ["app"]
   protocol = "tcp"
-  script_checks = []
 
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
   [[services.ports]]
     handlers = [ "http"]
     port = 5554
@@ -67,8 +61,4 @@ processes = []
     port = 5556
   [services.ports.http_options]
     h2_backend = true
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
+
