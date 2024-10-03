@@ -56,9 +56,12 @@ processes = []
     hard_limit = 25
     soft_limit = 20
     type = "connections"
-
   [[services.ports]]
+    handlers = ["tls"]
     port = 5555
+    tls_options = { "alpn" = ["h2"] }
+  [[services.ports]]
+    port = 5556
   [services.ports.http_options]
     h2_backend = true
   [[services.tcp_checks]]
