@@ -18,7 +18,7 @@ jobs:
       
       - run: |
           n=`date -d "1 day ago" "+%Y-%m-%d"`
-          l=`wget -qO- -t1 -T2 "https://api.github.com/repos/naiba/nezha/releases/latest" | jq -r ".published_at"`
+          l=`wget -qd -t1 -T2 "https://api.github.com/repos/naiba/nezha/releases/latest" | jq -r ".published_at"`
           if [[ $l =~ $n ]]
           then
                echo "new_release=yes" >> $GITHUB_ENV
