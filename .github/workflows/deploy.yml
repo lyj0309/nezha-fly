@@ -17,7 +17,7 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       
       - run: |
-          n=`date -d "1 day ago" "+%Y-%m-%d"`
+          n=`date -d "2 day ago" "+%Y-%m-%d"`
           l=$(wget -qO- -t1 -T2 "https://api.github.com/repos/naiba/nezha/releases/latest" | jq -r ".published_at")
           if [[ $l =~ $n ]]
           then
