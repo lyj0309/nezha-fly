@@ -1,0 +1,4 @@
+# flyctl launch added from .gitignore
+litestream.yml
+**/config.yaml
+fly.toml

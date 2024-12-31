@@ -1,64 +1,51 @@
-# fly.toml file generated for nz on 2022-02-07T02:08:50+08:00
+# fly.toml app configuration file generated for fakev-status on 2024-12-31T09:43:00Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "fakev-status"
-
-kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
-
-[env]
+app = 'fakev-status'
+primary_region = 'sin'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
 
 [experimental]
-  allowed_public_ports = []
   auto_rollback = true
 
-[mounts]
-  destination = "/dashboard/data"
-  source = "nz_data"
-[http_service.http_options]
-  h2_backend = true
+[build]
 
-[[services]]
-  http_checks = []
-  internal_port = 80
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
+[[mounts]]
+  source = 'nz_data'
+  destination = '/dashboard/data'
 
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
+[http_service]
+  internal_port = 8008
 
-  [[services.ports]]
-    handlers = ["http"]
-    port = 80
-    force_https = true
-    
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-
-[[services]]
-  internal_port = 5555
-  processes = ["app"]
-  protocol = "tcp"
-
-  [[services.ports]]
-    handlers = [ "http"]
-    port = 5554
-  [[services.ports]]
-    handlers = ["tls"]
-    port = 5555
-    tls_options = { "alpn" = ["h2"] }
-  [[services.ports]]
-    port = 5556
-  [services.ports.http_options]
+  [http_service.http_options]
     h2_backend = true
 
+[[services]]
+  protocol = 'tcp'
+  internal_port = 80
+  processes = ['app']
+
+  [[services.ports]]
+    port = 80
+    handlers = ['http']
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ['tls', 'http']
+
+  [services.concurrency]
+    type = 'connections'
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.tcp_checks]]
+    interval = '15s'
+    timeout = '2s'
+    grace_period = '1s'
+    
+[[vm]]
+  size = 'shared-cpu-1x'
