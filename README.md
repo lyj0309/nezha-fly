@@ -1,6 +1,6 @@
 # nezha-fly
 ## 部署哪吒面板到fly.io
-
+适用v1
 ## 原理
 通过基于原哪吒面板的docker镜像，在fly.io中mount做持久化储存 
 
@@ -11,7 +11,13 @@ action secrets
 
 ## 首次部署
 
-1. 先运行`fly launch`创建一个app，名字填`fly.toml`里面的, 我的是`fakev-status`可以改，但需要保持一样
-2. 要手动触发action
-3. 打开网站修改设置，比如站点名称，url
+1. 修改fly.toml的`app`成你的，运行`fly launch`创建一个app,然后进行配置选择
+![alt text](image/WXWorkCapture_17356960792229.png)
+![alt text](image/WXWorkCapture_17356381582218.png)
+2. 部署完成后，登录站点继续配置，比如站点名称，url
+![alt text](image/WXWorkCapture_17356955117160.png)
+
+## 自动更新
+action有定时检查更新脚本，会定期运行，如果有更新会自动同步
+
 ## 展示网址 （<https://status.fakev.cn>）
