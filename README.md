@@ -21,6 +21,21 @@ action secrets
 ![alt text](image/image.png)
 添加dns record即可
 ![alt text](image/image-1.png)
+
+## 导入导出配置数据
+### 导出
+```shell
+# config  
+fly ssh sftp get /dashboard/data/config.yaml -a {your-app-name}  
+
+# db  
+fly ssh sftp get /dashboard/data/sqlite.db -a {your-app-name}
+```
+### 导入
+```
+fly ssh sftp shell -a {your-app-name}
+put {filename}  /dashboard/data/
+```
 ## 自动更新
 action有定时检查更新脚本，会定期运行，如果有更新会自动同步
 
