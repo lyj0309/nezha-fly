@@ -17,6 +17,10 @@ action secrets
 2. 部署完成后，登录站点继续配置，比如站点名称，url
 ![alt text](image/WXWorkCapture_17356955117160.png)
 
+## 使用自己域名
+![alt text](image/image.png)
+添加dns record即可
+![alt text](image/image-1.png)
 ## 自动更新
 action有定时检查更新脚本，会定期运行，如果有更新会自动同步
 
