@@ -36,5 +36,5 @@ jobs:
           # sudo apt update && sudo  apt install httpie -y
           curl -L https://fly.io/install.sh | sh
           # echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
-          flyctl deploy --remote-only
+          /home/runner/.fly/bin/flyctl deploy --remote-only
 
