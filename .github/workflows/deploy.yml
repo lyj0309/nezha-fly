@@ -33,6 +33,7 @@ jobs:
       - name: deploy
         if: ${{ env.new_release == 'yes'  }}
         run: |
+          apt update && apt install httpie -y
           # echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
           flyctl deploy --remote-only
 
