@@ -36,13 +36,5 @@ jobs:
           set +e
           # sudo apt update && sudo  apt install httpie -y
           curl -L https://fly.io/install.sh | sh
-          # echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
-          for file in /home/runner/work/_temp/*; do
-            if [ -f "$file" ]; then
-              echo "==== $file ===="
-              cat "$file"
-              echo
-            fi
-          done          
           /home/runner/.fly/bin/flyctl deploy --remote-only
 
