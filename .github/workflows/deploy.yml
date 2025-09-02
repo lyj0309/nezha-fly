@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: superfly/flyctl-actions/setup-flyctl@master
+      # - uses: superfly/flyctl-actions/setup-flyctl@master
       
       - run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -33,7 +33,8 @@ jobs:
       - name: deploy
         if: ${{ env.new_release == 'yes'  }}
         run: |
-          sudo apt update && sudo  apt install httpie -y
+          # sudo apt update && sudo  apt install httpie -y
+          curl -L https://fly.io/install.sh | sh
           # echo '${{ secrets.CONFIG }}' > ./config.yaml && ls
           flyctl deploy --remote-only
 
